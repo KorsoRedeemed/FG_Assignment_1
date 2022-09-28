@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Blast : MonoBehaviour
 {
-    public float damage = 10f;
+    public int damage = 1;
     public float range = 100f;
     public float laserDuration = 1f;
 
@@ -40,6 +40,11 @@ public class Blast : MonoBehaviour
         {
             lr.SetPosition(1, hit.point);
             Debug.Log(hit.transform.name);
+            if(hit.transform.GetComponent<PlayerManager>() != null)
+            {
+                hit.transform.GetComponent<PlayerManager>().currentHealth -= damage;
+            }
+            
         }
     }
     

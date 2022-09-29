@@ -8,7 +8,10 @@ public class Blast : MonoBehaviour
 {
     public int damage = 1;
     public float range = 100f;
-    public float laserDuration = 1f;
+    public float laserDuration = 0.5f;
+
+    public int maxAmmo = 1;
+    private int currentAmmo = 1;
 
     public GameObject shootPos;
     public Camera playerCam;
@@ -16,21 +19,32 @@ public class Blast : MonoBehaviour
     public GameObject laserLine;
     private LineRenderer lr;
 
-    void Update()
+    void Start()
     {
-       if(Input.GetButtonDown("Fire1"))
+        if (currentAmmo == -1)
+        currentAmmo = maxAmmo;
+    }
+
+    void Update()
+    {   
+        if(Input.GetButtonDown("Fire1") && currentAmmo > 0)
         {
             Shoot();
         }
-    }
 
-    void Awake()
-    {
         
     }
 
+    public void Reload()
+    {
+        Debug.Log("Reloading...");
+        currentAmmo = maxAmmo;
+    }
+
+
     void Shoot() 
     {
+        currentAmmo--;
         GameObject lazer = Instantiate(laserLine);
         lr = lazer.GetComponent<LineRenderer>();
         lr.enabled = true;

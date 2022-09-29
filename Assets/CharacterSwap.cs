@@ -21,7 +21,6 @@ public class CharacterSwap : MonoBehaviour
         Swap();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -41,6 +40,7 @@ public class CharacterSwap : MonoBehaviour
     public void Swap()
     {
         character = possibleCharacters[whichCharacter];
+        character.GetComponent<CharacterMovement>().blaster.GetComponent<Blast>().Reload();
         character.GetComponent<CharacterMovement>().enabled = true;
         character.GetComponent<CharacterMovement>().blaster.SetActive(true);
         cam.GetComponent<TPCam>().orientation = character.GetComponent<CharacterMovement>().orientation;

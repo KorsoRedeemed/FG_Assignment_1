@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(LineRenderer))]
 
@@ -11,13 +13,15 @@ public class Blast : MonoBehaviour
     public float laserDuration = 0.5f;
 
     public int maxAmmo = 1;
-    private int currentAmmo = 1;
+    public int currentAmmo = 1;
 
     public GameObject shootPos;
     public Camera playerCam;
 
     public GameObject laserLine;
     private LineRenderer lr;
+
+    [SerializeField] private TextMeshProUGUI ammoDisplay;
 
     void Start()
     {
@@ -26,13 +30,12 @@ public class Blast : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
+        ammoDisplay.text = currentAmmo.ToString();
         if(Input.GetButtonDown("Fire1") && currentAmmo > 0)
         {
             Shoot();
         }
-
-        
     }
 
     public void Reload()

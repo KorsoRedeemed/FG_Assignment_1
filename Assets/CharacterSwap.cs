@@ -59,6 +59,5 @@ public class CharacterSwap : MonoBehaviour
         }
         cam.LookAt = character;
         cam.Follow = character;
-        
     }
 }
